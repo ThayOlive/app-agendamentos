@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendamento</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Css -->
+    
+</head>
+
+<nav class="navbar bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+      <img src="{% static 'image/calendario.ico.png' %}" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+      Agendamento
+    </a>
+  </div>
+</nav>
+
+<body class="container-fluid mt-4">
+    <form class="row g-3 mt-4" id="DadosForm" method= "POST">
+      {% csrf_token %}
+        <div class="col-md-3">
+          <label for="codigo_treinamento" class="form-label">Codigo do treinamento</label>
+          <input type="text" class="form-control" id="codigo_treinamento" name="codigo_treinamento">
+        </div>
+        <div class="col-md-3">
+          <label for="treinamento" class="form-label">Treinamento</label>
+          <input type="text" class="form-control" id="treinamento" name="treinamento">
+        </div>
+        <div class="col-3">
+          <label for="docente" class="form-label">Docente</label>
+          <input type="text" class="form-control" id="docente" name= "docente">
+        </div>
+        <div class="col-3">
+          <label for="proposta" class="form-label">Proposta</label>
+          <input type="text" class="form-control" id="proposta" name="proposta" >
+        </div>
+        <div class="col-md-3">
+          <label for="empresa" class="form-label">Empresa</label>
+          <input type="text" class="form-control" id="empresa" name="empresa">
+        </div>
+        <div class="col-md-3">
+            <label for="cliente" class="form-label">Cliente</label>
+            <input type="text" class="form-control" id="cliente" name="cliente">
+        </div>
+        <div class="col-md-3">
+            <label for="{{ form.status.id_for_label }}" class="form-label">Status</label><br>
+            {{ form.status }}
+        </div>
+              
+        <div class="col-md-3">
+            <label for="data_inicial" class="form-label">Data inicial</label>
+            <input type="date" class="form-control" id="data_inicial" name="data_inicial">
+        </div>
+        <div class="col-md-3">
+            <label for="data_final" class="form-label">Data final</label>
+            <input type="date" class="form-control" id="data_final" name="data_final">
+        </div>
+        <div class="col-md-3">
+          <label for="dias_treinamento" class="form-label">Dias de treinamento</label>
+          <input type="text" class="form-control" id="dias_treinamento" name="dias_treinamento">
+        </div>
+        <div class="col-md-3">
+            <label for="turno" class="form-label">Turno</label>
+            <input type="text" class="form-control" id="turno" name="turno">
+        </div>
+        <div class="col-md-3">
+            <label for="horas" class="form-label">Horas</label>
+            <input type="time" class="form-control" id="horas" name="horas">
+        </div>
+
+        <div class="col-md-4">
+          <label for="observacao" class="form-label">Observação</label>
+          <input type="text" class="form-control" id="observacao" name="observacao">
+      </div><br>
+
+        <div class="col mt-3">
+            <button type="button" class="btn btn-dark">Cadastrar agendamento</button>
+        </div>
+    </form>
+
+</body>
+
