@@ -16,7 +16,7 @@ class DadosGerais(models.Model):
     data_final =models.DateTimeField(null=False)
     dias_treinamento = models.IntegerField(null=False)
     turno = models.CharField(max_length=15, null=False)
-    horas = models.DateTimeField(null=False)
+    horas = models.TimeField(null=False)
     observacao = models.TextField(blank=True)
 
     def __str__(self):

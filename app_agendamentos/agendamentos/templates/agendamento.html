@@ -20,6 +20,24 @@
   </div>
 </nav>
 
+{% if messages %}
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-12">
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        {% endfor %}
+      </div>
+    </div>
+</div>
+{% endif %}
+
+
 <body class="container-fluid mt-4">
     <form class="row g-3 mt-4" id="DadosForm" method= "POST">
       {% csrf_token %}
@@ -79,9 +97,15 @@
       </div><br>
 
         <div class="col mt-3">
-            <button type="button" class="btn btn-dark">Cadastrar agendamento</button>
+            <button type="submit" class="btn btn-dark">Cadastrar agendamento</button>
         </div>
     </form>
 
 </body>
 
+<!-- jQuery e Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</html>
