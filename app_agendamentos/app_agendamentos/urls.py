@@ -20,7 +20,11 @@ from agendamentos import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.agendamento, name="agendamento")
+    path('', views.agendamento, name="agendamento"),
+    path('treinamento/', views.treinamento, name="treinamento"),
+    path('docentes/', views.docentes, name="docentes"),
+    path('cadastrar_docente/', views.cadastrar_docente, name="cadastrardocente"),
+    path('cliente/', views.clientes, name="clientes"),
 ]
 
 
