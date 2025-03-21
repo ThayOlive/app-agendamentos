@@ -1,3 +1,4 @@
+from datetime import time
 from django.db import models
 
 #Tabela docente
@@ -22,7 +23,7 @@ class Treinamento(models.Model):
         ('PRESENCIAL', 'Presencial'),
     ]
     nome= models.CharField(max_length=50, null=False)
-    formacao= models.TimeField(null=False)
+    formacao= models.IntegerField(null=False)
     modalidade= models.CharField(max_length=15, choices= TREINAMENTO_CHOICES, null=False)
 
     def __str__(self):

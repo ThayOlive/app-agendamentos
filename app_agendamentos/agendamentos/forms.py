@@ -14,7 +14,7 @@ class FormCliente(forms.ModelForm):
         
         class Meta:
             model = Cliente
-            fields = ("nome","regiao")
+            fields = ("nome", "regiao")
     
 #Formulário para cadastro de docente
 class FormDocente(forms.ModelForm):

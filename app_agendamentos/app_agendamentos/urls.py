@@ -17,15 +17,18 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from agendamentos import views
+from django.conf.urls.static import static
+from app_agendamentos import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.agendamento, name="agendamento"),
-    path('treinamento/', views.treinamento, name="treinamento"),
-    path('docentes/', views.docentes, name="docentes"),
-    path('cadastrar_docente/', views.cadastrar_docente, name="cadastrardocente"),
-    path('cliente/', views.clientes, name="clientes"),
-]
+    path('', views.agendamento, name='agendamento'),
+    path('treinamento/', views.treinamento, name='treinamento'),
+    path('calendario_agendamento/', views.calendario_agendamento, name='calendario_agendamento'),
+    path('calendario/agendamentos/', views.obter_agendamentos, name='obter_agendamentos'),  # Para retornar os eventos em formato JSON, se necessário
+    path('cadastrar_docente/', views.cadastrar_docente, name='cadastrardocente'),
+    path('cliente/', views.clientes, name='clientes'),
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
 

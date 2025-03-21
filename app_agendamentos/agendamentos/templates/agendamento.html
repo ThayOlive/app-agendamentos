@@ -11,6 +11,8 @@
     <!-- Css -->
     
 </head>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
 
 <!-- Criar uma navbar lateral com as opções de cadastrar clientes, docentes e treinamentos -->
 <div class="d-flex">
@@ -26,17 +28,18 @@
     
     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
+
   <div class="offcanvas-body">
-    
     <nav class="nav flex-column">
-      <a class="nav-link active" aria-current="page" href="#">Visualizar docentes</a>
-      <a class="nav-link" href="#">Cadastrar cliente</a>
-      <a class="nav-link" href="#">Cadastrar docente</a>
+      <a class="nav-link active" aria-current="page" href="{% url "calendario_agendamento" %}">Visualizar agendamentos</a>
+      <a class="nav-link" href="{% url 'clientes' %}">Cadastrar cliente</a>
+      <a class="nav-link" href="{% url 'cadastrardocente' %}">Cadastrar docente</a>
       <a class="nav-link" href="{% url 'treinamento' %}">Cadastrar treinamento</a>
       <a class="nav-link" href="#">Inserir agendamento</a>
       <a class="nav-link disabled" aria-disabled="true">Sair</a>
     </nav>
   </div>
+
 </div>
 
 
@@ -47,9 +50,7 @@
         {% for message in messages %}
             <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
                 {{ message }}
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         {% endfor %}
       </div>
@@ -57,19 +58,32 @@
 </div>
 {% endif %}
 
-
 <body class="container mt-4">
     <form class="row g-3 mt-4" id="DadosForm" method= "POST">
       {% csrf_token %}
-       
+ 
         <div class="col-md-3">
           <label for="treinamento" class="form-label">Treinamento</label>
-          <input type="text" class="form-control" id="treinamento" name="treinamento">
+          <select class="form-select" id="treinamento" name= "treinamento">
+            <option value= "">Selecione o treinamento</option>
+            {%for treinamento in treinamentos%}
+            <option value= "{{treinamento.id}}">{{treinamento.nome}} {{treinamento.formacao}}
+              {{treinamento.modalidade}}
+            </option>
+            {% endfor %}
+          </select>
         </div>
+
         <div class="col-3">
           <label for="docente" class="form-label">Docente</label>
-          <input type="text" class="form-control" id="docente" name= "docente">
+          <select class="form-select" id="docente" name= "docente">
+            <option value= "">Selecione o docente</option>
+            {%for docente in docentes%}
+            <option value= "{{docente.id}}">{{docente.nome}}</option>
+            {% endfor %}
+          </select>
         </div>
+
         <div class="col-3">
           <label for="proposta" class="form-label">Proposta</label>
           <input type="text" class="form-control" id="proposta" name="proposta" >
@@ -78,10 +92,18 @@
           <label for="empresa" class="form-label">Empresa</label>
           <input type="text" class="form-control" id="empresa" name="empresa">
         </div>
+
         <div class="col-md-3">
             <label for="cliente" class="form-label">Cliente</label>
-            <input type="text" class="form-control" id="cliente" name="cliente">
+            <select class="form-select" id="cliente" name= "cliente">
+            <option value= "">Selecione o cliente</option>
+            {%for cliente in clientes%}
+            <option value= "{{cliente.id}}">{{cliente.nome}} {{cliente.regiao}}</option>
+            {% endfor %}
+            </select>
         </div>
+
+
         <div class="col-md-3">
             <label for="{{ form.status.id_for_label }}" class="form-label">Status</label><br>
             {{ form.status }}
@@ -113,7 +135,7 @@
           <input type="text" class="form-control" id="observacao" name="observacao">
       </div><br>
 
-        <div class="col mt-3">
+        <div class="col-cd-3">
             <button type="submit" class="btn btn-dark">Cadastrar agendamento</button>
         </div>
     </form>
@@ -121,7 +143,7 @@
 </body>
 
 <!-- jQuery e Bootstrap JS -->
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 
 </html>
